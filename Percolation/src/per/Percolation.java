@@ -26,11 +26,11 @@ public class Percolation {
 	       if(i==1)// topmost row
 	       {
 	           topqf.union(0, j);
-	           originalqf.union(N*N+1, (i-1)*N+j);
+	           originalqf.union(0,j);
 	       }
 	       if(i==N)//bottom most row
 	       {
-	           originalqf.union(N*N+1, (i-1)*N+j); //topqf not connected to avoid backlash
+	           originalqf.union(N*N+1, (i-1)*N+j); //topqf not connected to avoid backwash
 	       }
 	       this.isOpen[i-1][j-1]=true;
 		   if(i>1&&this.isOpen[i-2][j-1]) //top
@@ -43,7 +43,7 @@ public class Percolation {
 			   unionBoth((i-1)*N+j,(i-1)*N + j+1);
 	   }
 	   
-	   public void unionBoth(int i,int j)
+	   private void unionBoth(int i,int j)
 	   {
 		   topqf.union(i, j);
 		   originalqf.union(i, j);
@@ -58,7 +58,7 @@ public class Percolation {
 	   {
 	       if(i<1||j<1||i>N||j>N)
                throw new java.lang.IndexOutOfBoundsException();
-	       return topqf.connected(0, (i-1)*N+j); //if it is connected to top
+	       return topqf.connected(0,(i-1)*N+ j);
 	   }
 	   public boolean percolates()             // does the system percolate?
 	   {
